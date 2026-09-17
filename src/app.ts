@@ -1,9 +1,14 @@
 import express, { Request, Response } from "express";
+import initDB from "./config/db";
+import { authRoutes } from "./modules/auth/auth.routes";
 
 const app = express();
 
 // middleware
 app.use(express.json());
+
+// init DB
+initDB();
 
 // Root route
 app.get("/", (_req: Request, res: Response) => {
@@ -11,6 +16,9 @@ app.get("/", (_req: Request, res: Response) => {
     .status(200)
     .json({ success: true, message: "Welcome to vechicle rental system" });
 });
+
+// use routes
+app.use("/api/v1/auth", authRoutes);
 
 // Not found route
 app.use((_req: Request, res: Response) => {
