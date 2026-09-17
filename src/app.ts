@@ -1,9 +1,13 @@
 import express, { Request, Response } from "express";
+import initDB from "./config/db";
 
 const app = express();
 
 // middleware
 app.use(express.json());
+
+// init DB
+initDB();
 
 // Root route
 app.get("/", (_req: Request, res: Response) => {
