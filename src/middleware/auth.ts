@@ -29,10 +29,10 @@ const auth = (...roles: string[]) => {
 
     req.user = decoded;
 
-    if (!roles.includes(decoded.role)) {
-      return res.status(401).json({
+    if (roles.length && !roles.includes(decoded.role)) {
+      return res.status(403).json({
         success: false,
-        message: "Unauthorized",
+        message: "Forbidden",
       });
     }
 
