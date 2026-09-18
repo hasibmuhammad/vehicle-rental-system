@@ -7,7 +7,10 @@ import { userUpdateSchema } from "./user.validation";
 
 const router = Router();
 
+// Create User
 router.get("/", auth("admin"), userController.getUsers);
+
+// Update User
 router.put(
   "/:userId",
   auth(),
@@ -15,5 +18,8 @@ router.put(
   validate(userUpdateSchema),
   userController.updateUser,
 );
+
+// Delete user
+router.delete("/:userId", auth("admin"), userController.deleteUser);
 
 export const userRoutes = router;
