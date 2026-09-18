@@ -23,6 +23,8 @@ const signin = async (payload: Record<string, unknown>) => {
     email,
   ]);
 
+  console.log(result);
+
   if (result.rows.length === 0) {
     return null;
   }
